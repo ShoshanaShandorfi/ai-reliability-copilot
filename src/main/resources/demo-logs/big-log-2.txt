@@ -1,0 +1,50 @@
+2026-06-21 11:00:00 INFO Gateway Incoming request POST /payments traceId=abc111
+2026-06-21 11:00:01 INFO AuthService Validating token user=54
+2026-06-21 11:00:01 INFO AuthService Token valid
+2026-06-21 11:00:02 INFO UserService Fetching profile id=54
+2026-06-21 11:00:02 INFO UserService Profile fetched
+
+2026-06-21 11:00:03 INFO PaymentService Start payment id=abc111 amount=75.00
+2026-06-21 11:00:04 INFO PaymentService Calling gateway
+2026-06-21 11:00:05 WARN PaymentService Slow response latency=1200ms
+2026-06-21 11:00:06 INFO MetricsService record latency=1200
+2026-06-21 11:00:07 ERROR PaymentService Timeout while calling gateway
+2026-06-21 11:00:08 INFO RetryService Retry attempt=1
+2026-06-21 11:00:10 WARN PaymentService Slow response latency=1400ms
+2026-06-21 11:00:11 ERROR PaymentService Timeout while calling gateway
+2026-06-21 11:00:12 INFO RetryService Retry attempt=2
+2026-06-21 11:00:14 ERROR PaymentService Timeout while calling gateway
+
+2026-06-21 11:00:15 ERROR CircuitBreaker OPEN
+2026-06-21 11:00:16 ERROR PaymentService Aborting request id=abc111
+
+2026-06-21 11:00:17 WARN OrderService Rolling back order id=abc111
+2026-06-21 11:00:18 ERROR OrderService Transaction failed id=abc111
+
+2026-06-21 11:00:19 INFO NotificationService Sending failure email
+
+2026-06-21 11:01:00 INFO Gateway Incoming request POST /payments traceId=abc112
+2026-06-21 11:01:01 INFO PaymentService Start payment id=abc112
+2026-06-21 11:01:02 INFO PaymentService Calling gateway
+2026-06-21 11:01:03 INFO PaymentService Response received
+2026-06-21 11:01:04 INFO PaymentService Payment completed
+2026-06-21 11:01:05 INFO Gateway Response 200
+
+2026-06-21 11:02:00 INFO HealthCheck Running system check
+2026-06-21 11:02:01 INFO HealthCheck Database OK
+2026-06-21 11:02:02 WARN HealthCheck Gateway latency high
+2026-06-21 11:02:03 WARN HealthCheck Gateway latency high
+2026-06-21 11:02:04 WARN HealthCheck Possible degradation
+
+2026-06-21 11:03:00 INFO InventoryService Updating stock
+2026-06-21 11:03:01 INFO InventoryService Done update
+
+2026-06-21 11:04:00 INFO Gateway Incoming request POST /payments traceId=abc113
+2026-06-21 11:04:01 INFO PaymentService Start payment id=abc113
+2026-06-21 11:04:02 INFO PaymentService Calling gateway
+2026-06-21 11:04:03 WARN PaymentService Slow response latency=1500ms
+2026-06-21 11:04:04 ERROR PaymentService Timeout while calling gateway
+2026-06-21 11:04:05 ERROR PaymentService Failed id=abc113
+
+2026-06-21 11:05:00 INFO Gateway Incoming request GET /health
+2026-06-21 11:05:01 INFO Gateway response OK

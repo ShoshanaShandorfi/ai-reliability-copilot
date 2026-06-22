@@ -1,0 +1,49 @@
+2026-06-21 10:00:00 INFO Gateway Incoming request POST /payments id=abc123
+2026-06-21 10:00:00 INFO TraceId=abc123 Start request processing
+2026-06-21 10:00:01 INFO AuthService Validating token for user=42
+2026-06-21 10:00:01 INFO AuthService Token valid
+2026-06-21 10:00:02 INFO UserService Fetching user profile id=42
+2026-06-21 10:00:02 INFO UserService Profile fetched successfully
+2026-06-21 10:00:03 INFO PaymentService Initializing payment id=abc123 amount=49.99
+2026-06-21 10:00:03 INFO PaymentService Preparing request to gateway
+2026-06-21 10:00:04 INFO CircuitBreaker state=CLOSED
+2026-06-21 10:00:04 INFO PaymentService Sending request to external gateway
+2026-06-21 10:00:05 WARN PaymentService Slow response detected latency=1200ms
+2026-06-21 10:00:06 INFO MetricsService recording latency=1200
+2026-06-21 10:00:07 INFO PaymentService Waiting for response
+2026-06-21 10:00:08 ERROR PaymentService Timeout while calling gateway
+2026-06-21 10:00:08 INFO RetryService Scheduling retry attempt=1 delay=2s
+2026-06-21 10:00:09 INFO ThreadPool executing retry task
+2026-06-21 10:00:10 INFO PaymentService Retry attempt=1
+2026-06-21 10:00:10 INFO PaymentService Sending request to external gateway
+2026-06-21 10:00:11 WARN PaymentService Slow response detected latency=1500ms
+2026-06-21 10:00:12 INFO MetricsService recording latency=1500
+2026-06-21 10:00:13 ERROR PaymentService Timeout while calling gateway
+2026-06-21 10:00:13 WARN RetryService Scheduling retry attempt=2 delay=3s
+2026-06-21 10:00:14 INFO ThreadPool executing retry task
+2026-06-21 10:00:15 INFO PaymentService Retry attempt=2
+2026-06-21 10:00:15 INFO PaymentService Sending request to external gateway
+2026-06-21 10:00:16 ERROR PaymentService Timeout while calling gateway
+2026-06-21 10:00:17 ERROR CircuitBreaker switching state to OPEN
+2026-06-21 10:00:17 ERROR PaymentService Circuit breaker triggered, aborting request
+2026-06-21 10:00:18 ERROR PaymentService Payment failed id=abc123
+2026-06-21 10:00:18 WARN OrderService Rolling back order id=abc123
+2026-06-21 10:00:19 ERROR OrderService Failed to complete transaction id=abc123
+2026-06-21 10:00:19 INFO NotificationService Sending failure notification
+2026-06-21 10:00:20 INFO Gateway Response status=500 id=abc123
+
+2026-06-21 10:01:00 INFO Gateway Incoming request POST /payments id=xyz999
+2026-06-21 10:01:00 INFO TraceId=xyz999 Start request processing
+2026-06-21 10:01:01 INFO AuthService Validating token for user=77
+2026-06-21 10:01:01 INFO AuthService Token valid
+2026-06-21 10:01:02 INFO PaymentService Initializing payment id=xyz999 amount=10.00
+2026-06-21 10:01:02 INFO PaymentService Preparing request to gateway
+2026-06-21 10:01:03 INFO PaymentService Sending request to external gateway
+2026-06-21 10:01:04 INFO PaymentService Response received successfully
+2026-06-21 10:01:04 INFO PaymentService Payment completed id=xyz999
+2026-06-21 10:01:05 INFO Gateway Response status=200 id=xyz999
+
+2026-06-21 10:02:00 INFO HealthCheckService running health check
+2026-06-21 10:02:01 INFO HealthCheckService database OK
+2026-06-21 10:02:01 INFO HealthCheckService gateway latency high
+2026-06-21 10:02:02 WARN HealthCheckService possible degradation detected

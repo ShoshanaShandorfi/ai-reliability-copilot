@@ -1,0 +1,25 @@
+2026-06-21 12:00:00 INFO OrderService Create order id=ord999
+2026-06-21 12:00:01 INFO DB Connecting to postgres
+2026-06-21 12:00:02 ERROR DB Connection refused
+2026-06-21 12:00:03 WARN DB Retrying connection
+2026-06-21 12:00:04 ERROR DB Connection refused
+2026-06-21 12:00:05 WARN DB Retrying connection
+2026-06-21 12:00:06 ERROR DB Connection refused
+
+2026-06-21 12:00:07 ERROR OrderService Failed to persist order
+2026-06-21 12:00:08 ERROR InventoryService Failed to reserve stock
+
+2026-06-21 12:00:09 INFO RetryService Retry attempt=1
+2026-06-21 12:00:11 ERROR DB Connection refused
+
+2026-06-21 12:00:12 ERROR OrderService Giving up
+
+2026-06-21 12:00:20 INFO NotificationService Sending alert DB down
+
+2026-06-21 12:01:00 INFO HealthCheck DB FAIL
+2026-06-21 12:01:01 WARN HealthCheck DB unstable
+2026-06-21 12:01:02 INFO HealthCheck Redis OK
+
+2026-06-21 12:02:00 INFO Gateway Incoming request POST /orders
+2026-06-21 12:02:01 ERROR OrderService DB unavailable
+2026-06-21 12:02:02 ERROR Gateway Response 500
